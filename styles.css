@@ -7,6 +7,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
@@ -14,6 +15,7 @@ body {
   line-height: 1.6;
   color: #1a1a1a;
   background: #ffffff;
+  overflow-x: hidden;
 }
 
 .container {
@@ -55,6 +57,34 @@ body {
   display: flex;
   list-style: none;
   gap: 2rem;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #2563eb;
+  margin: 2px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .nav-link {
@@ -235,6 +265,36 @@ body {
 .experience-card p {
   color: #64748b;
   line-height: 1.6;
+}
+
+.experience-location {
+  font-size: 0.95rem;
+  color: #6366f1;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.experience-description {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.experience-description li {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.experience-description li:before {
+  content: "•";
+  color: #2563eb;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
 }
 
 /* Skills Section */
@@ -697,14 +757,31 @@ footer {
     padding: 0 1rem;
   }
   
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
   .nav-menu {
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    z-index: 999;
+    padding: 2rem 0;
+  }
+
+  .nav-menu.active {
+    left: 0;
   }
   
   .nav-menu li {
-    margin: 0.25rem 0;
+    margin: 1rem 0;
   }
   
   .hero-content {
@@ -744,5 +821,41 @@ footer {
   .social-links {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-text p {
+    font-size: 1rem;
+  }
+  
+  .hero-image img {
+    max-width: 280px;
+  }
+  
+  .nav-menu {
+    top: 60px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
